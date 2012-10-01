@@ -3,4 +3,9 @@ source :rubygems
 gem 'rake'
 gem 'rspec'
 gem 'rspec_junit_formatter'
-gem 'heroku'
+
+group :development do
+  gem 'travis'
+  gem 'travis-lint'
+  gem 'heroku'
+end
