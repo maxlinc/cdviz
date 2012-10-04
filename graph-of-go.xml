@@ -2,7 +2,7 @@
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns">
     <key id="name" for="node" attr.name="name" attr.type="string"></key>
     <key id="type" for="node" attr.name="type" attr.type="string"></key>
-    <key id="time" for="edge" attr.name="time" attr.type="int"></key>
+    <key id="timestamp" for="edge" attr.name="timestamp" attr.type="int"></key>
     <graph id="G" edgedefault="directed">
         <node id="1">
             <data key="name">store</data>
@@ -20,8 +20,14 @@
             <data key="name">aggregate</data>
             <data key="type">pipeline</data>
         </node>
-        <edge id="1" source="1" target="4" label="triggers"></edge>
-        <edge id="2" source="2" target="4" label="triggers"></edge>
-        <edge id="3" source="3" target="4" label="triggers"></edge>
+        <edge id="1" source="1" target="4" label="triggers">
+            <data key="timestamp">1</data>
+        </edge>
+        <edge id="2" source="2" target="4" label="triggers">
+            <data key="timestamp">1</data>
+        </edge>
+        <edge id="3" source="3" target="4" label="triggers">
+            <data key="timestamp">1</data>
+        </edge>
     </graph>
 </graphml>
