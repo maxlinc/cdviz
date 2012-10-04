@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+    <key id="name" for="node" attr.name="name" attr.type="string"></key>
+    <key id="type" for="node" attr.name="type" attr.type="string"></key>
+    <key id="time" for="edge" attr.name="time" attr.type="int"></key>
+    <graph id="G" edgedefault="directed">
+        <node id="1">
+            <data key="name">store</data>
+            <data key="type">pipeline</data>
+        </node>
+        <node id="2">
+            <data key="name">jobs</data>
+            <data key="type">pipeline</data>
+        </node>
+        <node id="3">
+            <data key="name">catalogue</data>
+            <data key="type">pipeline</data>
+        </node>
+        <node id="4">
+            <data key="name">aggregate</data>
+            <data key="type">pipeline</data>
+        </node>
+        <edge id="1" source="1" target="4" label="triggers"></edge>
+        <edge id="2" source="2" target="4" label="triggers"></edge>
+        <edge id="3" source="3" target="4" label="triggers"></edge>
+    </graph>
+</graphml>
