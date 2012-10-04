@@ -1,3 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rspec', :group => :test
+gem 'fuubar', :group => :test
+gem 'spork', '~> 1.0rc', :group => :test
+gem 'guard-rspec', '0.5.2', :group => :test
+gem 'guard-bundler', :group => :test
+gem 'guard-spork', :group => :test
+gem 'rb-fsevent', :group => :test, :require => false
+gem 'terminal-notifier-guard', :group => :test, :require => false
