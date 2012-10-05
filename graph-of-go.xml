@@ -13,13 +13,21 @@
             <data key="type">pipeline</data>
         </node>
         <node id="3">
-            <data key="name">catalogue</data>
+            <data key="name">catalog</data>
             <data key="type">pipeline</data>
         </node>
         <node id="4">
             <data key="name">aggregate</data>
             <data key="type">pipeline</data>
         </node>
+
+        <node id="j1">
+            <data key="type">job</data>
+        </node>
+        <node id="j2">
+            <data key="type">job</data>
+        </node>
+
         <edge id="1" source="1" target="4" label="triggers">
             <data key="timestamp">1</data>
         </edge>
