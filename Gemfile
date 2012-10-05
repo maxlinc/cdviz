@@ -8,4 +8,5 @@ group :development do
   gem 'travis'
   gem 'travis-lint'
   gem 'heroku'
+  gem 'pry'
 end
