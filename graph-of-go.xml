@@ -4,19 +4,19 @@
     <key id="type" for="node" attr.name="type" attr.type="string"></key>
     <key id="timestamp" for="edge" attr.name="timestamp" attr.type="int"></key>
     <graph id="G" edgedefault="directed">
-        <node id="1">
+        <node id="p1">
             <data key="name">store</data>
             <data key="type">pipeline</data>
         </node>
-        <node id="2">
+        <node id="p2">
             <data key="name">jobs</data>
             <data key="type">pipeline</data>
         </node>
-        <node id="3">
+        <node id="p3">
             <data key="name">catalog</data>
             <data key="type">pipeline</data>
         </node>
-        <node id="4">
+        <node id="p4">
             <data key="name">aggregate</data>
             <data key="type">pipeline</data>
         </node>
@@ -28,13 +28,13 @@
             <data key="type">job</data>
         </node>
 
-        <edge id="1" source="1" target="4" label="triggers">
+        <edge id="1" source="p1" target="p4" label="triggers">
             <data key="timestamp">1</data>
         </edge>
-        <edge id="2" source="2" target="4" label="triggers">
+        <edge id="2" source="p2" target="p4" label="triggers">
             <data key="timestamp">1</data>
         </edge>
-        <edge id="3" source="3" target="4" label="triggers">
+        <edge id="3" source="p3" target="p4" label="triggers">
             <data key="timestamp">1</data>
         </edge>
     </graph>
