@@ -9,3 +9,12 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
 end
 
 task :default => [:spec]
+
+task :gen_sample do
+  require 'erb'
+  rails_apps = ['site', 'admin', 'store']
+  deployments = [ 'qa', 'uat', 'prod']
+  content = File.read 'big.graphml.erb'
+  template = ERB.new(content)
+  File.open('big.graphml', 'wb').write(template.result(binding))
+end
