@@ -8,3 +8,5 @@ gem 'guard-bundler', :group => :test
 gem 'guard-spork', :group => :test
 gem 'rb-fsevent', :group => :test, :require => false
 gem 'terminal-notifier-guard', :group => :test, :require => false
+gem 'rb-inotify', '~> 0.8.8', :group => :test, :require => false #linux
+gem 'libnotify', :group => :test, :require => false #linux
