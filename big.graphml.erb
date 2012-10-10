@@ -78,6 +78,9 @@
         <edge source="aggregate_pipeline" target="aggregate_aggregate_stage">
             <data key="_label">contains</data>
         </edge>
+        <edge source="aggregate_aggregate_stage" target="aggregate_aggregate_job">
+            <data key="_label">contains</data>
+        </edge>
         <edge source="aggregate_aggregate_stage" target="qa_deploy_stage">
             <data key="_label">triggers</data>
         </edge>
@@ -132,5 +135,40 @@
         </edge>
         <% end %>
 <% end %>
+
+        <% require 'faker' # here comes the crazy data!
+            users = []
+            10.times do
+                user = {
+                    :name => Faker::Name.name,
+                    :email => Faker::Internet.email
+                }
+                users << user
+            end
+        %>
+        <% users.each do |user| %>
+        <node id="user_<%= user[:name] %>">
+            <data key="name"><%= user[:name] %></data>
+            <data key="type">user</data>
+        </node>
+        <% end %>
+
+        <% 5.times do %>
+        <% commit_hash = Faker::Lorem.characters 64 %>
+        <% user = users.sample %>
+        <node id="commit_<%= commit_hash %>">
+            <data key="name"><%= commit_hash %></data>
+            <data key="type">commit</data>
+        </node>
+
+        <edge source="user_<%= user[:name] %>" target="commit_<%= commit_hash %>">
+            <data key="_label">commited</data>
+        </edge>
+
+        <% app = rails_apps.sample %>
+        <edge source="commit_<%= commit_hash %>" target="<%= app %>_pipeline">
+            <data key="_label">built</data>
+        </edge>
+        <% end %>
     </graph>
 </graphml>

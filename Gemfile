@@ -9,4 +9,5 @@ group :development do
   gem 'travis-lint'
   gem 'heroku'
   gem 'pry'
+  gem 'faker'
 end

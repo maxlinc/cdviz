@@ -10,6 +10,7 @@ end
 
 task :default => [:spec]
 
+desc 'Generates random sample data'
 task :gen_sample do
   require 'erb'
   rails_apps = ['site', 'admin', 'store']
