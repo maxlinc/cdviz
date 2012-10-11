@@ -3,7 +3,7 @@ require './lib/job_execution'
 describe 'Job' do
 	before :all do
 		@job = Job.new(name: 'job_name')	
-    @execution = JobExecution.new
+    @execution = JobExecution.new(id: 123)
     @job.executions << @execution
 	end
 
