@@ -1,10 +1,13 @@
 require './lib/job_execution'
+require './lib/execution_timestamps'
 describe 'JobExecution' do
   before :all do
     @job_execution = JobExecution.new(id: 1234,
                                       agent: 'vm.agent.007',
                                       duration: 42,
                                       result: 'Failed')
+    @timestamps = ExecutionTimestamps.new
+    @job_execution.timestamps = @timestamps
   end
 
   subject { @job_execution }
@@ -13,4 +16,5 @@ describe 'JobExecution' do
   its(:agent) { should == "vm.agent.007" }
   its(:duration) { should == 42 }
   its(:result) { should == 'Failed' }
+  its(:timestamps) { should == @timestamps }
 end

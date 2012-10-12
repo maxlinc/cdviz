@@ -1,5 +1,5 @@
 class JobExecution
-  attr_accessor :id, :agent, :duration, :result
+  attr_accessor :id, :agent, :duration, :result, :timestamps
 
   def initialize(options)
     @id = options[:id]
