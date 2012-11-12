@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+<!-- This just produces a "pipeline of pipelines" or "value-stream" graph -->
+<% rails_apps = ['site', 'admin', 'store'] %>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+    <key id="name" for="node" attr.name="name" attr.type="string"></key>
+    <key id="type" for="node" attr.name="type" attr.type="string"></key>
+    <key id="template" for="node" attr.name="template" attr.type="string"></key>
+    <key id="action" for="edge" attr.name="action" attr.type="string"></key>
+    <key id="duration" for="edge" attr.name="duration" attr.type="string"></key>
+    <graph id="G" edgedefault="directed">
+<% rails_apps.each do | app | %>
+        <!-- <%=app %> nodes -->
+        <node id="<%=app %>_pipeline">
+            <data key="name"><%=app %></data>
+            <data key="type">pipeline</data>
+            <data key="template">rails_app</data>
+        </node>
+
+        <edge source="<%=app %>_pipeline" target="aggregate_pipeline">
+            <data key="action">triggers</data>
+        </edge>
+
+        <% if red_data %>
+            <% 10.times do %>
+                <edge source="<%=app %>_pipeline" target="aggregate_pipeline">
+                    <data key="action">triggered</data>
+                    <data key="duration"><%= Random.rand(5..30)%></data>
+                </edge>
+
+                <edge source="<%=app %>_pipeline" target="aggregate_pipeline">
+                    <data key="action">triggered</data>
+                    <data key="duration"><%= Random.rand(5..30)%></data>
+                </edge>
+
+                <edge source="<%=app %>_pipeline" target="aggregate_pipeline">
+                    <data key="action">triggered</data>
+                    <data key="duration"><%= Random.rand(5..30)%></data>
+                </edge>
+            <% end %>
+        <% end %>
+<% end %>
+
+        <!-- Aggregate nodes -->
+        <node id="aggregate_pipeline">
+            <data key="name">aggregate</data>
+            <data key="type">pipeline</data>
+            <!-- no template -->
+        </node>
+
+        <edge source="aggregate_pipeline" target="<%= deployments.first %>_pipeline">
+            <data key="action">triggers</data>
+        </edge>
+
+        <% if red_data %>
+            <% 10.times do %>
+                <edge source="aggregate_pipeline" target="<%= deployments.first %>_pipeline">
+                    <data key="action">triggered</data>
+                    <data key="duration"><%= Random.rand(5..30)%></data>
+                </edge>
+            <% end %>
+        <% end %>
+
+<% while deployments.size > 0 %>
+<%   environment = deployments.shift %>
+<%   next_environment = deployments[0] %>
+        <!--  Environment: <%= environment %>-->
+        <!--  Next: <%= next_environment %>-->
+        <!-- <%= environment %> nodes -->
+        <node id="<%= environment %>_pipeline">
+            <data key="name"><%= environment %></data>
+            <data key="type">pipeline</data>
+            <data key="template">deploy</data>
+        </node>
+
+        <% unless next_environment.nil? %>
+        <edge source="<%= environment %>_pipeline" target="<%= next_environment %>_pipeline">
+            <data key="action">triggers</data>
+        </edge>
+
+        <% if red_data %>
+            <% 10.times do %>
+                <edge source="<%= environment %>_pipeline" target="<%= next_environment %>_pipeline">
+                    <data key="action">triggered</data>
+                    <data key="duration"><%= Random.rand(5..30)%></data>
+                </edge>
+            <% end %>
+        <% end %>
+        <% end %>
+<% end %>
+    </graph>
+</graphml>
