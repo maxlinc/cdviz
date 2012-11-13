@@ -1,1 +1,8 @@
 artifacts/
+.classpath
+.gradle/
+.project
+.settings/
+bin/
+build/
+combo.graphml
