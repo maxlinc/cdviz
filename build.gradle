@@ -1,0 +1,14 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = "HelloGremlin"
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  groovy group: 'com.tinkerpop.gremlin', name: 'gremlin-groovy', version: '2.1.0'
+}
+
+

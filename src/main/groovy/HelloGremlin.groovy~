@@ -1,0 +1,18 @@
+import com.tinkerpop.blueprints.Graph
+com.tinkerpop.gremlin.groovy.Gremlin
+
+class SimpleExample { 
+  static {
+    Gremlin.load()
+  }
+  public List exampleMethod() {
+    Graph g = TinkerGraphFactory.createTinkerGraph()
+    def results = []
+    g.v(1).out('knows').fill(results)
+    return results
+  }
+
+  public static void main(String[] args) {
+	System.out.println(exampleMethod())
+  }
+}
